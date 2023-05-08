@@ -28,9 +28,19 @@ DI（dependency injection）依赖注入
 
 ioc入门操作：
 
-1.导包maven spring
+1.导包
+
+```
+<dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>5.2.10.RELEASE</version>
+ </dependency>
+```
 
 2.创建配置文件
+
+resources文件创建applicationContext.xml文件
 
 ​    2.1配置bean    id为给bean起名字，class属性表示给bean定义类型
 
@@ -54,13 +64,13 @@ bookservice bookservice=(bookservice) ctx.getbean("bookbean")  要进行强转�
 
 DI入门操作：
 
-5.删除service层使用new的方式创建dao对象的方式
+5.删除serviceimpl层使用new的方式创建dao对象的方式
 
 ```
-private bookdao bookdao
+private bookdao bookdao  这是一个dao层对象
 ```
 
-6.提供对应的set方法
+6.提供对应的set方法用于设置service层dao对象
 
 7.写配置service与dao的关系
 
@@ -71,12 +81,14 @@ name属性表示配置哪一个具体的属性
 ref属性表示参照哪一个bean
 
 ```
-<property name="bookdao" ref="bookdao">
+<property name="bookdao" ref="bookdao"> name指的是步骤5下面的dao  ref的dao指的是xml里的dao bean
 ```
 
 
 
 疑问：为什么要在service中创建private bookdao 它是怎么通过set方法实现实现获取dao对象的
+
+应该是spring在内部调用了set方法，从ioc容器中获取出dao对象，再通过set方法给serviceimpl。
 
 # bean配置
 
@@ -85,7 +97,7 @@ ref属性表示参照哪一个bean
 起别名：name属性 
 
 ```
-name="service service2 bookEbi"别名之间用空格 ， ；分隔开 
+<bean name="service service2 bookEbi"/>别名之间用空格 ， ；分隔开 
 ```
 
 ### bean的作用范围
@@ -120,9 +132,16 @@ bean本质是对象，创建bean使用构造方法完成，使用的是无参构
 <bean id="orderDao" class="com.rencai.factory" factory-method="getorderdao" 工厂哪个方法造的对象/>
 ```
 
+工厂内getorderdao方法创建dao对象
+
 3.使用实例工厂实例化bean
 
 配置两个bean，一个bean用于实例工厂，另外一个bean用于实例dao 要多配置一个factory-bean=""
+
+```
+<bean id="factory" class="com.rencai.factorybean " /> 这个用于实例化工厂
+<bean id="orderDao" factory-bean="orderdao" factory-method="factory" />factory-bean用于实例化factory，再用method实例化dao
+```
 
 4.使用factorybean实例化bean
 
@@ -132,11 +151,23 @@ bean本质是对象，创建bean使用构造方法完成，使用的是无参构
 
 操作：
 
-写一个userdaofactorybean的java类implements factorybean<userdao>
+1.写一个userdaofactorybean的java类implements factorybean<userdao>造什么对象里面填什么
 
-重写两个方法
+2.实现两个方法
 
-//代替原始实例工厂中创建对象的方法
+两个方法的作用
+
+```
+getObject(){//代替原始实例工厂中创建对象的方法
+return new 一个对象
+}
+getObjectType(){
+return 一个对象.class
+}
+isSingleton() 单例非单例
+```
+
+3.配置步骤4的配置
 
 # bean的生命周期
 
