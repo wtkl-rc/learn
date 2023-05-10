@@ -1,7 +1,6 @@
-# rcnie.top
+# 人才捏
 
-这个仓库是用于学习和记录生活的
+[学习](https://github.com/wtkl-rc/wtkl-rc.github.io/tree/main/knowledge)
 
-konwledge文件夹用于学习
+[记录生活](https://github.com/wtkl-rc/wtkl-rc.github.io/tree/main/life)
 
-life用于生活记录
