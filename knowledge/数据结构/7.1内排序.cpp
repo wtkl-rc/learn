@@ -73,3 +73,35 @@ void sort_insert(sqlist &l){
 }
 
 
+/**
+ * 7.2.2希尔排序
+ * 待排序序列分成若干个子序列，然后分别进行插入排序的方法
+ * 
+*/
+
+void sort_shell(sqlist &l,int dk){
+    int i,j;
+    for(i=1+dk;i<l.length;i++){
+        if(l.r[i].key<l.r[i-dk].key){    //如果前面的大于后面的
+            l.r[0]=l.r[i];
+            l.r[i]=l.r[i-dk];
+            for(j=i-2*dk;l.r[0].key<l.r[j].key;j-=dk){     //我还是不能明白为什么j=i-2*dk这里算出来的是负数
+                l.r[j+dk]=l.r[j];      //这样会出现两个l.r[j]然后方便0插入
+            }
+            l.r[j]=l.r[0];
+        }
+    }
+}
+
+void sort_shell(sqlist &l,int dlta[],int t){
+    for(int a=0;a<t;a++){
+        sort_shell(l,dlta[a]);    
+    }
+}
+
+/**
+ * 7.3交换排序
+ * 7.3.1冒泡排序
+*/
+
+//7.3.2快速排序
