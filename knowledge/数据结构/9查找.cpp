@@ -79,7 +79,5 @@ int rsearchdst(BiTree t,int key,BiTree f,BiTree &p){
 int insertdst(BiTree &t,int e){
     BiTree p,s;
    if(!rsearchdst(t,e,nullptr,p)){ //判断e是否已经存在,如果不存在进行插入
-    
    }
-
 }
