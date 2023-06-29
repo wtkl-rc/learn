@@ -52,7 +52,7 @@ int enqueue(sqqueue &q,int e){
     //设置一个标志变量的方法
     int flag;
     //在循环顺序队列q中插入新的元素w，使其成为新的元素的队尾    
-    if(flag==1&&q.rear==q.front){       //判断队列是否为空
+    if(flag==1&&q.rear==q.front){       //判断队列是否为满
         return 0;
     }
 
@@ -85,6 +85,7 @@ int dequeue(sqqueue &q,int &e){//设置一个标志变量的方法
 //3-16求长度
 int queuelength(sqqueue q){ //设置一个标志变量法
     //返回循环顺序队列中数据元素的个数
+    int flag;
     if(q.front==q.rear&&flag==1){   //队满
         return maxsize;
     }else{
