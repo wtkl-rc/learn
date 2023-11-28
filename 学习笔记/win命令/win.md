@@ -1,9 +1,13 @@
 **1.创建软连接**
 
-mklink /d d:\
-
-
+```
+mklink [/d][/j] 目标地址 源地址 
+mklink /d C:\Users\rencai\AppData\Local\Docker  D:\AppData\Local\Docker
+```
 
 **2.修改开始菜单搜索应用程序**
 
+```
 C:\ProgramData\Microsoft\Windows\Start Menu\Programs
+```
+
