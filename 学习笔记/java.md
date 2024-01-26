@@ -46,6 +46,14 @@ toString
 
 
 
+Queue
+
+new一个队列
+
+new 
+
+
+
 
 
 # java集合
