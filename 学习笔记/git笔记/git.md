@@ -1,8 +1,20 @@
+版本库就是.git文件夹、工作区就是跟.git同目录的文件夹、.git里面的index文件就是暂存区
+
+## git init
+
+本地初始化仓库
+
 ## git log
+
+查看日志跟版本
+
+## git  reset 
+
+可以加文件名，把暂存的文件变为未被暂存
 
 ## git  reset --hard
 
-回退版本
+使用git log查看版本信息
 
 reset参数是重置命令
 
@@ -10,9 +22,11 @@ reset参数是重置命令
 
 ## git status
 
+查看文件的状态：未被跟踪、已被跟踪（修改、未修改、暂存）
+
 ## git add、git commit -m 
 
-
+add把文件放进暂存区，commit -m把文件提交到本地仓库，-m是message
 
 ## git branch，git checkout创建,查看一个分支
 
@@ -48,9 +62,17 @@ git reflog可以查看当前版本库的提交历史，凡是对仓库版本进�
 
 ## git remote add origin关联到远程仓库
 
+## git push
 
+git push remote-name branch 推送到远程仓库  例如： git push origin master 
 
-## 查看远程仓库  git remote
+## git remote
+
+查看远程仓库 	加参数-v可查看具体的地址
+
+## git  remote add
+
+本地初始化的仓库没有关联任何远程仓库使用这个命令**添加远程仓库**，git remote add origin + url
 
 ## git push -u origin master推送到远程仓库
 
@@ -70,7 +92,11 @@ git clone ＋远程仓库ssh+文件夹
 
 可以使用git fetch把远程全部分支拉取下来，同时也包括这些分支的仓库版本，log日志等，这个操作不会进行合并。
 
-## 拉取git pull 
+## git pull 
+
+允许无关历史 --allow-unrelated-histories 在原来的命令加上
+
+git pull origin margin 
 
 拉取指令就是将远端仓库的修改拉到本地自动进行合并。
 
