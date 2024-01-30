@@ -257,3 +257,105 @@ vi是linux中的一个文本编辑工具类似记事本，vim是由vi发展而�
 
 # 软件安装
 
+二进制安装
+
+​	软件针对具体平台编译打包发布，只要解压、修改配置就可以安装
+
+rpm安装
+
+​	按照redhat的包管理规范进行打包，使用rpm命令进行安装，不能自行解决库依赖问题
+
+yum安装
+
+​	在线安装，本质上还是rpm安装，自动下载安装包安装，安装过程解决库依赖问题
+
+源码编译安装
+
+​	源码自行编译
+
+## java安装
+
+自行安装的软件一般在 usr/local
+
+配置环境变量 etc/profile
+
+JAVA_HOME=路径
+
+PATH=$JAVA_HOME/bin:$PATH
+
+重新加载profile文件，source /etc/profile
+
+检查安装否成功 java -version
+
+## tomcat安装
+
+启动tomcat直接进入bin目录执行start的shell脚本
+
+验证是否启动成功
+
+1 查看启动日志
+
+​	more apach-tomcat/logs/catalina.out
+
+2 查看进程 
+
+​	ps -ef | grep tomcat
+
+ps -ef 可以查看当前运行的所有进程的详细信息
+
+| 在linux中称为管道符，可以将前一个命令的输出给后一个命令作为输入
+
+
+
+停止tomcat服务
+
+1 运行shutdown.sh
+
+2 通过ps 获取进程id 直kill -9 进程id
+
+kill是用于结束进程的命令 -9表示强制结束
+
+
+
+## 防火墙
+
+查看防火墙状态
+
+​	systemctl status firewalld 、 firewall-cmd --state
+
+暂时关闭防火墙
+
+​	systemctl stop firewalld
+
+永久关闭防火墙
+
+​	system disable firewalld
+
+开启防火墙
+
+​	systemctl start firewalld
+
+开放指定端口
+
+​	firewall-cmd --zone=pulic --add-port=8080/tcp --permanent
+
+关闭指定端口
+
+​	firewall-cmd --zone=public --remove-port=8080/tcp --permanent
+
+立即生效
+
+​	firewall-cmd --reload
+
+查看开放端口
+
+​	firewall-cmd --zone=public --list-ports 
+
+
+
+systemctl 是管理linux中服务的命令，可以对服务进行启动，停止，重启、查看状态等操作
+
+firewall-cmd 是linux中专门用于控制防火墙的命令
+
+
+
