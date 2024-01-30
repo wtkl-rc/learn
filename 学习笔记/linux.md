@@ -357,5 +357,142 @@ systemctl 是管理linux中服务的命令，可以对服务进行启动，停�
 
 firewall-cmd 是linux中专门用于控制防火墙的命令
 
+## rpm
 
+### 查询
 
+rpm -qa 查询当前系统中安装的所有软件 q是查询，a是all
+
+rpm -qa | grep mysql 查询系统中安装的名称带mysql的软件
+
+### 卸载
+
+rpm -e --nodeps 软件名字 
+
+### 安装
+
+需要按照顺序安装rpm文件
+
+rpm -ivh 文件名
+
+## 安装mysql
+
+mariadb与mysql冲突，安装之前要删除
+
+需要yum install net-tools 
+
+## 启动mysql
+
+systemctl status mysqld 查看mysql服务状态
+
+systemctl start mysqld 启动服务
+
+可以设置开机启动mysql服务
+
+systemctl enable mysqld  开机启动mysql服务
+
+netstat -tunlp 查看已经启动的服务
+
+netstat -tunlp | grep mysqld
+
+## 登录mysql
+
+查看临时密码
+
+cat var/log/mysqld.log 查看文件内容  | grep password
+
+mysql -uroot -p
+
+修改密码
+
+set global validate_password_length=4  设置密码长度最低位数
+
+set global validate_password_policy=LOW 设置密码安全等级低，便于修改成root
+
+set password= password('root') 设置密码为root
+
+开启访问权限
+
+grant all on *.* to 'root'@'%'identified by 'root'   @是匹配所有ip地址
+
+flush privileges
+
+## yum
+
+yum list 软件名
+
+yum install 软件名
+
+# 项目部署
+
+/app目录放jar包
+
+## nohup
+
+no hang up 不挂起 用于不挂断地运行指定命令,退出终端不会影响程序的运行
+
+nohup command [arg..] [&]
+
+command 要执行的命令
+
+arg 一些参数，可以指定输出文件
+
+& 让命令在后台运行
+
+例：nohup java -jar hello.jar &>hello.log &  后台运行java -jar 命令,并将日志输出到hello.jar文件
+
+## maven安装
+
+配置环境变量
+
+mvn -version 检查是成功
+
+修改配置文件设置本地仓库
+
+vim maven/conf/settings.xml
+
+<localRepository>/usr/local/repo</localRepository>
+
+## shell脚本
+
+## 权限
+
+linux中权限分为 r读 w写 x执行
+
+linux的文件调用权限分为三级：文件所有者owner  	用户组group 	其他用户other users
+
+只有文件的所有者和超级用户可以修改文件或目录的权限
+
+执行shell脚本要有对此脚本的执行权限
+
+例:
+
+-r--r--r--  
+
+表示文件类型
+
+r-- 表示文件所有者对文件只有读权限没有写和执行
+
+r-- （第二个）表示用户组，第三个表示其他用户
+
+## chmod
+
+7 rwx	6 rw-	5 r-x	4 r--	3 -wx	2 -w-	1 --x	0 ---
+
+例：chmod 777 文件名
+
+## 设置静态ip
+
+/etc/sysconfig/network-scripts/ifcfg-ens33(不固定)
+
+bootproto= static 
+
+ipaddr = "192.168.138.100" 设置的静态ip地址
+
+netmask="255.255.255.0" 子网掩码
+
+gateway="192.168.138.2" 网关地址
+
+dns1="192.168.138.2" dns服务器
+
+systemctl  restart network

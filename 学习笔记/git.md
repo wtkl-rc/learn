@@ -112,7 +112,8 @@ git抓取远程所有分支：
 
 ## git pull 
 
-git pull origin margin 
+// 先执行
+git pull origin master --allow-unrelated-histories
 
 允许无关历史 --allow-unrelated-histories 在原来的命令加上，就是本地初始化的仓库和远程的不一样，有不同的历史，加上这个就可以拉取
 
