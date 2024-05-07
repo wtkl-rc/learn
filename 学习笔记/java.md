@@ -136,7 +136,7 @@ Iterator 是 Java 迭代器最简单的实现，ListIterator 是 Collection API 
 
 适合创建那种只需一次使用的类，创建匿名内部类时会立即创建一个该类的实例，这个类的定义立即消失，匿名内部类不能重复使用
 
-```
+```java
 //定义一个活动接口
 interface Action{
     public String eat();
@@ -164,6 +164,21 @@ public class Mouth {
 ```
 
 # Comparable比较器
+
+使用collection.sort排序时，当list里面是数字事，能够排序，当是一个对象时，不知道
+
+原因也很简单, 因为Java不知道应该怎样为Student对象排序, 是应该按名字排序? 还是按ranking来排序?
+
+在student类里面implements Comparable，然后重写方法
+
+```
+ public int compareTo(Object o){
+        Student s = (Student)(o);
+        return this.ranking - s.ranking;
+}
+```
+
+
 
 # String类
 
@@ -377,3 +392,40 @@ Java中多态有两种实现，①方法的多态；②对象的多态
 ②抽象类可以没有抽象方法，但是抽象方法必须放在抽象类中。
 
 # 多线程thread
+
+
+
+
+
+# Lambda表达式
+
+我是通过对比匿名内部类明白是干嘛的
+
+看代码这两段代码的效果是一样的，就是匿名内部类，但是接口只能有一个抽象方法
+
+```java
+ public static void main(String[] args) {
+        //在主方法中调用useAddle方法
+        //Lambda
+        useAddable((int a, int b) -> {
+            return a+b;
+        });
+
+        useAddable(new Addable() {
+                       @Override
+                       public int add(int x, int y) {
+                           return x+y;
+                       }
+                   }
+        );
+    }
+
+    private static void useAddable(Addable a){
+        int sum = a.add(10,20);
+        System.out.println(sum);
+    }
+    public interface Addable {
+        int add(int x,int y);
+    }
+```
+
