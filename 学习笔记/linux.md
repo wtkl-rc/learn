@@ -496,3 +496,10 @@ gateway="192.168.138.2" 网关地址
 dns1="192.168.138.2" dns服务器
 
 systemctl  restart network
+
+# 安装anaconda
+
+```
+wget -c 'https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh' -P /home/krisnat/Downloads
+```
+
